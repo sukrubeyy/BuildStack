@@ -13,6 +13,7 @@ public partial class Spawner : MonoBehaviour
     /// </summary>
     public void SpawnCube()
     {
+        
         // MoveCube tipinde(aslında cube objesi yaratıyoruz) bir obje yaratıyoruz.
         var cube = Instantiate(prefabCube);
 

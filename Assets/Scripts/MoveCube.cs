@@ -51,6 +51,7 @@ public class MoveCube : MonoBehaviour
     internal void Stop()
     {
         _Speed = 0;
+        CameraFollower.Instance.UpdateTransform();
         //float olarak tanımladığımız hangover değerine GetHangover methodu içerisinde LastCube ile currentCube obje arasındaki
         //koordinat farkını buluyoruz ve hangover değişkenine atıyoruz.
         float hangover = GetHangover();
