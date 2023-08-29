@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 //Enum Particle Class olan MoveDirection SpawnerZ den türetilmiştir bu yüzden burada kütüphane gibi kullanmamız gerekmektedir.
-using static SpawnerZ;
+using static Spawner;
 
 public class MoveCube : MonoBehaviour
 {   [Header("Movement")]
@@ -13,6 +13,7 @@ public class MoveCube : MonoBehaviour
     public static MoveCube currentCube { get; private set; }
     //MoveCube Lastcube Sabit cube üzerine oturmuş olan en son cube objemizdir.
     public static MoveCube LastCube { get; private set; }
+
     //MoveDirectin classı türünde üretilen MoveDirection değişkeni.
     public MoveDirection MoveDirection { get;  set; }
     /// <summary>
@@ -58,8 +59,8 @@ public class MoveCube : MonoBehaviour
         //Eğer hangover yani aradaki fark max değerinden büyükse oyun tekrar başlasın.
         if (Mathf.Abs(hangover) >= max)
         {
-            LastCube = null;
-            currentCube = null;
+            // LastCube = null;
+            // currentCube = null;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         //Eğer hangover 0 değerinden büyük ise 1 değerini ata
@@ -127,7 +128,6 @@ public class MoveCube : MonoBehaviour
 
     private void SplitZpos(float hangZPos,float direction)
     {
-
         float newZsize = LastCube.transform.localScale.z - Math.Abs(hangZPos);
 
         float BlockSize = transform.localScale.z - newZsize;

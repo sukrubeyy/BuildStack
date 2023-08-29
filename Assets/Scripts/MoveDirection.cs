@@ -1,4 +1,4 @@
-﻿public partial class SpawnerZ
+﻿public partial class Spawner
 {
     public enum MoveDirection
     { 

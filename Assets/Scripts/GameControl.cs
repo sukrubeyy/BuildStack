@@ -1,28 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
-    [Header("Spawn Points")]
-    private SpawnerZ[] spawners;
-    [Header("Spawn Points Array Index")]
-    private int spawnerIndex;
-    [Header("Spawner Particle Class Scrip (Enum Script) )")]
-    private SpawnerZ currentSpawner;
+    [Header("Spawn Points")] [SerializeField]
+    private Spawner[] spawners;
 
+    [Header("Spawn Points Array Index")] [SerializeField]
+    private int spawnerIndex;
+
+    [Header("Spawner Particle Class Scrip (Enum Script) )")] [SerializeField]
+    private Spawner currentSpawner;
+
+    public static GameControl instance;
     private void Awake()
     {
         //Mevcut bulunan iki spawn objesine ulaşıp spawners dizisine atıyoruz.
-        spawners = FindObjectsOfType<SpawnerZ>();
+        spawners = FindObjectsOfType<Spawner>();
     }
+
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             //MoveCube içerisinde bulunan statik obje olan currentCube null değilse hareket eden cube dursun.
             if (MoveCube.currentCube != null)
                 MoveCube.currentCube.Stop();
+
             //fakat oyun ilk başlangıcında bu değer null olduğu için alt satırda SpawnCube methoduna doğru ilerleyecektir.
             //spawnerIndex değeri eğer 0'a eşitse 1 değerini ata 
             //1'e eşitse 0 değeri ataması yap. 
@@ -35,5 +41,4 @@ public class GameControl : MonoBehaviour
             currentSpawner.SpawnCube();
         }
     }
-    
 }
